@@ -15,10 +15,11 @@ defmodule Identicon do
       hex_list
       |> pick_color
 
-    grid =
+    pixel_map =
       hex_list
       |> build_grid
       |> filter_odds
+      |> build_pixel_map
   end
 
   @doc """
@@ -97,6 +98,43 @@ defmodule Identicon do
     grid
     |> Enum.filter fn({value, _index}) ->
       rem(value, 2) == 0
+    end
+  end
+
+
+  @doc """
+    Calculates the corners of pixels according to given `grid`
+
+  ## Examples
+      iex> Identicon.hash("hello world") |> Identicon.build_grid |> Identicon.filter_odds |> Identicon.build_pixel_map
+      [
+        {{0, 0}, {50, 50}},
+        {{50, 0}, {100, 50}},
+        {{150, 0}, {200, 50}},
+        {{200, 0}, {250, 50}},
+        {{50, 50}, {100, 100}},
+        {{100, 50}, {150, 100}},
+        {{150, 50}, {200, 100}},
+        {{0, 100}, {50, 150}},
+        {{50, 100}, {100, 150}},
+        {{150, 100}, {200, 150}},
+        {{200, 100}, {250, 150}},
+        {{50, 150}, {100, 200}},
+        {{150, 150}, {200, 200}},
+        {{50, 200}, {100, 250}},
+        {{150, 200}, {200, 250}}
+      ]
+  """
+  def build_pixel_map(grid) do
+    grid
+    |> Enum.map fn({_value, index}) ->
+      horizontal = rem(index, 5) * 50
+      vertical = div(index, 5) * 50
+
+      top_left = {horizontal, vertical}
+      bottom_right = {horizontal + 50, vertical + 50}
+
+      {top_left, bottom_right}
     end
   end
 end
