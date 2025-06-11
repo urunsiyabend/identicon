@@ -9,17 +9,19 @@ defmodule Identicon do
   def generate(string) do
     hex_list =
       string
-      |> hash
+      |> hash()
 
     color =
       hex_list
-      |> pick_color
+      |> pick_color()
 
     pixel_map =
       hex_list
-      |> build_grid
-      |> filter_odds
-      |> build_pixel_map
+      |> build_grid()
+      |> filter_odds()
+      |> build_pixel_map()
+
+    draw_svg(pixel_map, color)
   end
 
   @doc """
@@ -61,10 +63,10 @@ defmodule Identicon do
   """
   def build_grid(list) do
     list
-    |> Enum.chunk(3)
+    |> Enum.chunk_every(3, 3, :discard)
     |> Enum.map(&mirror_row/1)
-    |> List.flatten
-    |> Enum.with_index
+    |> List.flatten()
+    |> Enum.with_index()
   end
 
 
@@ -96,9 +98,9 @@ defmodule Identicon do
   """
   def filter_odds(grid) do
     grid
-    |> Enum.filter fn({value, _index}) ->
+    |> Enum.filter(fn {value, _index} ->
       rem(value, 2) == 0
-    end
+    end)
   end
 
 
@@ -127,7 +129,7 @@ defmodule Identicon do
   """
   def build_pixel_map(grid) do
     grid
-    |> Enum.map fn({_value, index}) ->
+    |> Enum.map(fn {_value, index} ->
       horizontal = rem(index, 5) * 50
       vertical = div(index, 5) * 50
 
@@ -135,6 +137,25 @@ defmodule Identicon do
       bottom_right = {horizontal + 50, vertical + 50}
 
       {top_left, bottom_right}
-    end
+    end)
+  end
+
+  @doc """
+  Draws the identicon into an SVG string
+  """
+  def draw_svg(pixel_map, {r, g, b}) do
+    rects =
+      Enum.map(pixel_map, fn {{x1, y1}, {x2, y2}} ->
+        "<rect x='#{x1}' y='#{y1}' width='#{x2 - x1}' height='#{y2 - y1}' fill='rgb(#{r},#{g},#{b})' />"
+      end)
+
+    "<svg xmlns='http://www.w3.org/2000/svg' width='250' height='250'>" <> Enum.join(rects, "") <> "</svg>"
+  end
+
+  @doc """
+  Generate SVG identicon from the given string
+  """
+  def image_svg(string) do
+    generate(string)
   end
 end
