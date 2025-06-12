@@ -1,6 +1,7 @@
 defmodule IdenticonWeb.HomeLive do
   use IdenticonWeb, :live_view
   alias Phoenix.LiveView.JS
+  import IdenticonWeb.CoreComponents, only: [button: 1]
 
   def mount(params, _session, socket) do
     username = params["u"]
@@ -9,13 +10,14 @@ defmodule IdenticonWeb.HomeLive do
 
   def handle_event("generate", %{"username" => username}, socket) do
     {:noreply,
-      socket
-      |> assign_svg(username)
-      |> push_patch(to: "/?u=#{username}")}
+     socket
+     |> assign_svg(username)
+     |> push_patch(to: "/?u=#{username}")}
   end
 
   defp assign_svg(socket, nil), do: assign(socket, username: nil, svg: nil)
   defp assign_svg(socket, ""), do: assign(socket, username: nil, svg: nil)
+
   defp assign_svg(socket, username) do
     assign(socket, username: username, svg: Identicon.image_svg(username))
   end

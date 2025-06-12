@@ -34,7 +34,8 @@ defmodule Identicon.MixProject do
       {:phoenix_html, "~> 3.3"},
       {:phoenix_live_view, "~> 0.19.5"},
       {:esbuild, "~> 0.7", runtime: Mix.env() == :dev},
-      {:tailwind, "~> 0.1.10", runtime: Mix.env() == :dev}
+      {:tailwind, "~> 0.1.10", runtime: Mix.env() == :dev},
+      {:floki, git: "https://github.com/philss/floki", tag: "v0.35.3", only: :test}
     ]
   end
 end
