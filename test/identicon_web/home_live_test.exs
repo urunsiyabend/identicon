@@ -14,4 +14,11 @@ defmodule IdenticonWeb.HomeLiveTest do
     {:ok, view, _html} = live(build_conn(), "/?u=bob")
     assert has_element?(view, "img")
   end
+
+  test "submit generates preview" do
+    {:ok, view, _html} = live(build_conn(), "/")
+    form = element(view, "form")
+    render_submit(form, %{"username" => "alice"})
+    assert has_element?(view, "img[src='/identicon/alice']")
+  end
 end
