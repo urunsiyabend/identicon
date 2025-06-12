@@ -1,6 +1,8 @@
 # Identicon
 
-**TODO: Add description**
+Generates simple identicon images in SVG format and serves them over a minimal
+web interface built with Plug and Cowboy. Users can preview and download
+identicons based on any input string.
 
 ## Installation
 
