@@ -28,7 +28,13 @@ defmodule Identicon.MixProject do
       {:plug, github: "elixir-plug/plug", tag: "v1.15.3", override: true},
       {:cowboy, github: "ninenines/cowboy", tag: "2.10.0", override: true},
       {:cowboy_telemetry, github: "beam-telemetry/cowboy_telemetry", tag: "v0.4.0", override: true},
-      {:plug_cowboy, github: "elixir-plug/plug_cowboy", tag: "v2.6.1", override: true}
+      {:plug_cowboy, github: "elixir-plug/plug_cowboy", tag: "v2.6.1", override: true},
+      {:phoenix, github: "phoenixframework/phoenix", tag: "v1.7.10"},
+      {:phoenix_pubsub, github: "phoenixframework/phoenix_pubsub", tag: "v2.1.3"},
+      {:phoenix_html, github: "phoenixframework/phoenix_html", tag: "v3.3.4"},
+      {:phoenix_live_view, github: "phoenixframework/phoenix_live_view", tag: "v0.19.5"},
+      {:esbuild, github: "phoenixframework/esbuild", tag: "v0.7.0", runtime: Mix.env() == :dev},
+      {:tailwind, github: "phoenixframework/tailwind", tag: "v0.1.10", runtime: Mix.env() == :dev}
     ]
   end
 end
