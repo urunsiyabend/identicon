@@ -3,7 +3,7 @@ defmodule Identicon.Application do
 
   def start(_type, _args) do
     children = [
-      {Plug.Cowboy, scheme: :http, plug: IdenticonWeb.Router, options: [port: 4000]}
+      IdenticonWeb.Endpoint
     ]
 
     opts = [strategy: :one_for_one, name: Identicon.Supervisor]

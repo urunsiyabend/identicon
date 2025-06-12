@@ -1,23 +1,15 @@
 # Identicon
 
-Generates simple identicon images in SVG format and serves them over a minimal
-web interface built with Plug and Cowboy. Users can preview and download
-identicons based on any input string.
+Phoenix 1.7 application that generates SVG identicons. The home page lets you preview
+and download images without page reloads. A shareable `?u=alice` query will auto-load
+the preview.
 
-## Installation
+## Development
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `identicon` to your list of dependencies in `mix.exs`:
+Fetch deps and start the server:
 
-```elixir
-def deps do
-  [
-    {:identicon, "~> 0.1.0"}
-  ]
-end
+```bash
+mix deps.get && mix phx.server
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/identicon>.
-
+Navigate to [`localhost:4000`](http://localhost:4000) to use the app.
