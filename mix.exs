@@ -22,19 +22,19 @@ defmodule Identicon.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:mime, github: "elixir-plug/mime", tag: "v2.0.3", override: true},
-      {:plug_crypto, github: "elixir-plug/plug_crypto", tag: "v1.2.5", override: true},
-      {:telemetry, github: "beam-telemetry/telemetry", tag: "v1.2.1", override: true},
-      {:plug, github: "elixir-plug/plug", tag: "v1.15.3", override: true},
-      {:cowboy, github: "ninenines/cowboy", tag: "2.10.0", override: true},
-      {:cowboy_telemetry, github: "beam-telemetry/cowboy_telemetry", tag: "v0.4.0", override: true},
-      {:plug_cowboy, github: "elixir-plug/plug_cowboy", tag: "v2.6.1", override: true},
-      {:phoenix, github: "phoenixframework/phoenix", tag: "v1.7.10"},
-      {:phoenix_pubsub, github: "phoenixframework/phoenix_pubsub", tag: "v2.1.3"},
-      {:phoenix_html, github: "phoenixframework/phoenix_html", tag: "v3.3.4"},
-      {:phoenix_live_view, github: "phoenixframework/phoenix_live_view", tag: "v0.19.5"},
-      {:esbuild, github: "phoenixframework/esbuild", tag: "v0.7.0", runtime: Mix.env() == :dev},
-      {:tailwind, github: "phoenixframework/tailwind", tag: "v0.1.10", runtime: Mix.env() == :dev}
+      {:mime, "~> 2.0", override: true},
+      {:plug_crypto, "~> 1.2", override: true},
+      {:telemetry, "~> 1.2", override: true},
+      {:plug, "~> 1.15", override: true},
+      {:cowboy, "~> 2.10", override: true},
+      {:cowboy_telemetry, "~> 0.4", override: true},
+      {:plug_cowboy, "~> 2.6", override: true},
+      {:phoenix, "~> 1.7.10"},
+      {:phoenix_pubsub, "~> 2.1"},
+      {:phoenix_html, "~> 3.3"},
+      {:phoenix_live_view, "~> 0.19.5"},
+      {:esbuild, "~> 0.7", runtime: Mix.env() == :dev},
+      {:tailwind, "~> 0.1.10", runtime: Mix.env() == :dev}
     ]
   end
 end
